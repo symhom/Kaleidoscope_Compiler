@@ -5,12 +5,14 @@ tldr: This is a python compiler that utilizes PLY to tokenize and parse Kaleidos
 example command line where input.txt contains the Kaleidsocope Code:
 python ekcc.py -emit-ast -jit -O input.txt
 
+input.txt contains example code. input.ast.yaml is the yaml ast. 
+
 1. ekcc.py: The main script
 2. global variables are defined
 3. lexerAndParser.py: Uses the PLY library to tokenize and parse the code to create an AST in the form of dictionaries and lists. 
 4. analyzer.py does some error checking by recursively going through the AST.
-	- In <vdecl>, the type may not be void
-	- In ref <type>, the type may not be void or a reference type
+	- In 'vdecl', the type may not be void
+	- In ref 'type', the type may not be void or a reference type
 	- All functions must be declared/defined before being used
 	- The initialization expression for a reference variable (including function arguments) must be a variable.
 	- All programs must define exactly one function named “run” which returns an integer (the program exit status) and takes no arguments.
