@@ -5,7 +5,7 @@ tldr: This is a python compiler that utilizes PLY to tokenize and parse Kaleidos
 example command line where input.txt contains the Kaleidsocope Code:
 python ekcc.py -emit-ast -jit -O input.txt
 
-input.txt contains example code. input.ast.yaml is the yaml ast. 
+input.txt contains example code. input.ast.yaml is the yaml ast of the example code. 
 
 1. ekcc.py: The main script
 2. global variables are defined
