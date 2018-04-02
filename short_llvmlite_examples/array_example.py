@@ -13,8 +13,8 @@ llvm.initialize_native_asmprinter()
 # The script generates the IR, executes the following code using llvmlite, and returns the value 5:
 
 # def int main()
-# 	array = [3,5,8]
-# 	return array[1]
+# 	array = [3,5,8];
+# 	return array[1];
 	
 ###################################### 
 # generate the IR code 
@@ -38,21 +38,12 @@ main_func = ir.Function(module, fnty, name=func_name)
 block = main_func.append_basic_block('entry')
 builder = ir.IRBuilder(block)
 
-# define array when length of 3 and type of i32
+# define array with length of 3 and type of i32
 # arrays can't have different types
 array_example = [3,5,8]
 array_type = ir.ArrayType(i32, len(array_example)) #According to documentation, the second argument has to be an Python Integer. It can't be ir.Constant(i32, 3) for example.
 arr = ir.Constant(array_type, array_example)
 ptr = builder.alloca(array_type) #allocate memory
-
-#insert values into array
-for number, arg in enumerate(array_example):
-    int_value = ir.Constant(i32, arg)
-    #In this case, arg is a number
-    #In the case of array = [a, b, c] where a, b, and c are variables and not directly integers
-    # we can just load the value from a pointer to the variable
-    #http://llvmlite.readthedocs.io/en/latest/user-guide/ir/ir-builder.html
-    builder.insert_value(arr, int_value, number)
 builder.store(arr, ptr)
 
 #to obtain these values. Let's say we want to get index 1
@@ -110,16 +101,15 @@ print(f'It returns {result}')
 # {
 # entry:
 #   %".2" = alloca [3 x i32]
-#   %".3" = insertvalue [3 x i32] [i32 3, i32 5, i32 8], i32 3, 0
-#   %".4" = insertvalue [3 x i32] [i32 3, i32 5, i32 8], i32 5, 1
-#   %".5" = insertvalue [3 x i32] [i32 3, i32 5, i32 8], i32 8, 2
 #   store [3 x i32] [i32 3, i32 5, i32 8], [3 x i32]* %".2"
-#   %".7" = alloca i32
-#   store i32 1, i32* %".7"
-#   %".9" = load i32, i32* %".7"
-#   %".10" = getelementptr [3 x i32], [3 x i32]* %".2", i32 0, i32 %".9"
-#   %".11" = load i32, i32* %".10"
-#   ret i32 %".11"
+#   %".4" = alloca i32
+#   store i32 1, i32* %".4"
+#   %".6" = load i32, i32* %".4"
+#   %".7" = getelementptr [3 x i32], [3 x i32]* %".2", i32 0, i32 %".6"
+#   %".8" = load i32, i32* %".7"
+#   ret i32 %".8"
 # }
+
+
 
 # It returns 5
