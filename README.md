@@ -7,7 +7,7 @@ python ekcc.py -emit-ast -jit -O input.txt
 
 input.txt contains example code. input.ast.yaml is the yaml ast of the example code. 
 
-##Python code
+## Python code
 1. ekcc.py: The main script
 2. constants.py: global variables are defined
 3. lexerAndParser.py: Uses the PLY library to tokenize and parse the code to create an AST in the form of dictionaries and lists. http://www.dabeaz.com/ply/ply.html
@@ -22,5 +22,5 @@ input.txt contains example code. input.ast.yaml is the yaml ast of the example c
 6. llvm_binder.py: actually binds, compiles, and executes the IR. It injects LLVM IR code into the IR module string for the print function. It also optimizes the compilation of the code. 
 
 ## short__llvmlite_examples
-The folder contains examples of
+The folder contains llvmlite examples of
 - arrays
