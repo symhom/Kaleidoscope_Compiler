@@ -10,14 +10,12 @@ llvm.initialize_native_target()
 llvm.initialize_native_asmprinter()
 
 #####################
-'''
-The script generates the IR, executes the following code using llvmlite, and returns the value 5:
+# The script generates the IR, executes the following code using llvmlite, and returns the value 5:
 
-def int main()
-	array = [3,5,8]
-	return array[1]
+# def int main()
+# 	array = [3,5,8]
+# 	return array[1]
 	
-'''
 ###################################### 
 # generate the IR code 
 i32 = ir.IntType(32)
@@ -68,13 +66,14 @@ value = builder.load(ptr_arg)
 
 #the address of array[index] that we want
 address = builder.gep(ptr, [int_0,value]) #you need int_0
-# I would avoid using IRbuilder.extract_value(agg, index), because the index has to be a Python integer, and not a loaded value from the IR representation unlike IRbuider.gep. For example...
-'''
-variable = a *b+ 1
-array = [1,2,3]
-array[variable] #can't use extract_value because you don't know what value 'variable' is until run time, and extract_value uses python integer
-array[0] #can use extract_value, because you know at compile time that the index is '0' and can use the python integer '0'
-'''
+# I would avoid using IRbuilder.extract_value(agg, index), because the index has to be a Python integer, 
+# and not a loaded value from the IR representation unlike IRbuider.gep. For example...
+
+# variable = a *b+ 1
+# array = [1,2,3]
+# array[variable]  can't use extract_value because you don't know what value 'variable' 
+# is until run time, and extract_value uses python integer
+# array[0]  can use extract_value, because you know at compile time that the index is '0' and can use the python integer '0'
 
 
 # we return this value
@@ -102,27 +101,25 @@ print(f'It returns {result}')
 
 #the result printed out is
 
-'''
-The llvm IR generated is:
-; ModuleID = "array_example"
-target triple = "unknown-unknown-unknown"
-target datalayout = ""
+# The llvm IR generated is:
+# ; ModuleID = "array_example"
+# target triple = "unknown-unknown-unknown"
+# target datalayout = ""
 
-define i32 @"main"() 
-{
-entry:
-  %".2" = alloca [3 x i32]
-  %".3" = insertvalue [3 x i32] [i32 3, i32 5, i32 8], i32 3, 0
-  %".4" = insertvalue [3 x i32] [i32 3, i32 5, i32 8], i32 5, 1
-  %".5" = insertvalue [3 x i32] [i32 3, i32 5, i32 8], i32 8, 2
-  store [3 x i32] [i32 3, i32 5, i32 8], [3 x i32]* %".2"
-  %".7" = alloca i32
-  store i32 1, i32* %".7"
-  %".9" = load i32, i32* %".7"
-  %".10" = getelementptr [3 x i32], [3 x i32]* %".2", i32 0, i32 %".9"
-  %".11" = load i32, i32* %".10"
-  ret i32 %".11"
-}
+# define i32 @"main"() 
+# {
+# entry:
+#   %".2" = alloca [3 x i32]
+#   %".3" = insertvalue [3 x i32] [i32 3, i32 5, i32 8], i32 3, 0
+#   %".4" = insertvalue [3 x i32] [i32 3, i32 5, i32 8], i32 5, 1
+#   %".5" = insertvalue [3 x i32] [i32 3, i32 5, i32 8], i32 8, 2
+#   store [3 x i32] [i32 3, i32 5, i32 8], [3 x i32]* %".2"
+#   %".7" = alloca i32
+#   store i32 1, i32* %".7"
+#   %".9" = load i32, i32* %".7"
+#   %".10" = getelementptr [3 x i32], [3 x i32]* %".2", i32 0, i32 %".9"
+#   %".11" = load i32, i32* %".10"
+#   ret i32 %".11"
+# }
 
-It returns 5
-'''
+# It returns 5
