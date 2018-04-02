@@ -8,7 +8,7 @@ python ekcc.py -emit-ast -jit -O input.txt
 input.txt contains example code. input.ast.yaml is the yaml ast of the example code. 
 
 1. ekcc.py: The main script
-2. global variables are defined
+2. constants.py: global variables are defined
 3. lexerAndParser.py: Uses the PLY library to tokenize and parse the code to create an AST in the form of dictionaries and lists. 
 4. analyzer.py does some error checking by recursively going through the AST.
 	- In 'vdecl', the type may not be void
