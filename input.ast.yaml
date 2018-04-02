@@ -1,0 +1,187 @@
+funcList:
+  fib: int
+  inc: void
+  run: int
+funcs:
+  funcs:
+  - blk:
+      contents:
+        name: stmts
+        stmts:
+        - cond:
+            lhs:
+              name: varval
+              type: int
+              var: n
+            name: binop
+            op: lt
+            rhs:
+              name: lit
+              type: int
+              value: 1
+            type: int
+          name: if
+          stmt:
+            exp:
+              name: lit
+              type: int
+              value: 0
+            knownVariables:
+              n: int
+            name: ret
+        - cond:
+            lhs:
+              name: varval
+              type: int
+              var: n
+            name: binop
+            op: eq
+            rhs:
+              name: lit
+              type: int
+              value: 1
+            type: int
+          name: if
+          stmt:
+            exp:
+              name: lit
+              type: int
+              value: 1
+            knownVariables:
+              n: int
+            name: ret
+        - exp:
+            globid: fib
+            name: funccall
+            params:
+              exps:
+              - lhs:
+                  name: varval
+                  type: int
+                  var: n
+                name: binop
+                op: sub
+                rhs:
+                  name: lit
+                  type: int
+                  value: 1
+                type: int
+            type: int
+          name: vardeclstmt
+          vdecl:
+            node: vdecl
+            type: int
+            var: a
+        - exp:
+            globid: fib
+            name: funccall
+            params:
+              exps:
+              - lhs:
+                  name: varval
+                  type: int
+                  var: n
+                name: binop
+                op: sub
+                rhs:
+                  name: lit
+                  type: int
+                  value: 2
+                type: int
+            type: int
+          name: vardeclstmt
+          vdecl:
+            node: vdecl
+            type: int
+            var: b
+        - exp:
+            lhs:
+              name: varval
+              type: int
+              var: a
+            name: binop
+            op: add
+            rhs:
+              name: varval
+              type: int
+              var: b
+            type: int
+          name: ret
+      knownVariables:
+        a: int
+        b: int
+        n: int
+      name: blk
+    globid: fib
+    name: func
+    ret_type: int
+    vdecls:
+      name: vdecls
+      vars:
+      - node: vdecl
+        type: int
+        var: n
+  - blk:
+      contents:
+        name: stmts
+        stmts:
+        - exp:
+            exp:
+              lhs:
+                name: varval
+                type: int
+                var: n
+              name: binop
+              op: add
+              rhs:
+                name: lit
+                type: int
+                value: 1
+              type: int
+            name: assign
+            type: int
+            var: n
+          name: expstmt
+      knownVariables:
+        n: int
+      name: blk
+    globid: inc
+    name: func
+    ret_type: void
+    vdecls:
+      name: vdecls
+      vars:
+      - node: vdecl
+        type: ref int
+        var: n
+  - blk:
+      contents:
+        name: stmts
+        stmts:
+        - exp:
+            globid: fib
+            name: funccall
+            params:
+              exps:
+              - name: lit
+                type: int
+                value: 7
+            type: int
+          name: vardeclstmt
+          vdecl:
+            node: vdecl
+            type: int
+            var: a
+        - exp:
+            name: varval
+            type: int
+            var: a
+          name: ret
+      knownVariables:
+        a: int
+      name: blk
+    globid: run
+    name: func
+    ret_type: int
+  name: funcs
+name: prog
