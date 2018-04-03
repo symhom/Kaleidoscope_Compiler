@@ -39,7 +39,7 @@ block = main_func.append_basic_block('entry')
 builder = ir.IRBuilder(block)
 
 # define array with length of 3 and type of i32
-# arrays can't have different types
+# arrays can't have different types within it
 array_example = [3,5,8]
 array_type = ir.ArrayType(i32, len(array_example)) #According to documentation, the second argument has to be an Python Integer. It can't be ir.Constant(i32, 3) for example.
 arr = ir.Constant(array_type, array_example)
