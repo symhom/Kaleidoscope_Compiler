@@ -22,13 +22,13 @@ llvm.initialize_native_asmprinter()
 # generate the IR code 
 # the initial part: define module, function, basic block, etc
 
-i32 = ir.IntType(32) #integers with 32 bits
+i32 = ir.IntType(32) #integer with 32 bits
 
 #make a module
 module = ir.Module(name = "array_example")
 
 # define function parameters for function "main"
-return_type = i32 #return void
+return_type = i32 #return int
 argument_types = list() #can add ir.IntType(#), ir.FloatType() for arguments
 func_name = "main"
 
@@ -100,9 +100,10 @@ builder.store(value_8, pointer_to_index_2)
 ######################################
 # getting the value of a certain index, in this case, index 1
 
-address = builder.gep(array_pointer, [i32_0,i32_1])
+address = builder.gep(array_pointer, [i32_0,i32_1]) 
 value = builder.load(address)
 # we return this value
+
 builder.ret(value)
 
 
