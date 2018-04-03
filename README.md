@@ -25,36 +25,36 @@ input.txt contains example code. input.ast.yaml is the yaml ast of the example c
 The folder contains short self-contained examples of llvmlite code. It does not generate the IR by recurisvely going through the AST, but instead builds it up manually line by line. It includes llvmlite examples of creating arrays and while loops. 
 
 #### array_example.py
-It goes over a simple example where it creates an array and accesses a value from it.
+It goes over a simple example where it creates an array and accesses a value from it. Creates the IR representation of the below code. 
 
 ```
 def int main()
     array = [3,5,8];
-	return array[1];
+    return array[1];
 ```
 
 #### array_example_with_variables.py
-It goes over a slightly different way to make arrays, especially when the array values are only known at run time.
+It goes over a slightly different way to make arrays, especially when the array values are only known at run time. Creates the IR representation of the below code. 
 ```
 def int main()
-	int x = 3;
-	int y = x * 2 -1;
- 	array = [x,y,8];
- 	return array[1];
+    int x = 3;
+    int y = x * 2 -1;
+    array = [x,y,8];
+    return array[1];
 ```
 
 #### while_loop_example.py
-Llvmlite example of creating the llvm IR of a 'while' loop.
+Llvmlite example of creating the llvm IR of a 'while' loop. Creates the IR representation of the below code. 
 ```
 def int main()
-	int x = 3;
-	int i = 1;
+    int x = 3;
+    int i = 1;
 
-	while (i < 5){
-	x = x * 2;
- 	i = i + 1;
-	}
+    while (i < 5){
+    x = x * 2;
+    i = i + 1;
+    }
 
-	return x; 
+    return x; 
 
 ```
