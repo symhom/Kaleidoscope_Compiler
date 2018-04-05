@@ -22,7 +22,7 @@ input.txt contains example code. input.ast.yaml is the yaml ast of the example c
 6. llvm_binder.py: actually binds, compiles, and executes the IR. It injects LLVM IR code into the IR module string for the print function. It also optimizes the compilation of the code. 
 
 ## short__llvmlite_examples
-The folder contains short self-contained examples of llvmlite code. It does not generate the IR by recurisvely going through the AST, but instead builds it up manually line by line. It includes llvmlite examples of creating arrays and while loops. 
+The folder contains short self-contained examples/tutorials of llvmlite code. It does not generate the IR by recurisvely going through the AST, but instead builds it up manually line by line. It includes llvmlite examples of creating arrays, 'for' loops, and 'while' loops. 
 
 #### array_example.py
 It goes over a simple example where it creates an array and accesses a value from it. Creates the IR representation of the below code. 
@@ -42,6 +42,20 @@ def int main()
     array = [x,y,8];
     return array[1];
 ```
+
+#### for_loop_example.py
+Llvmlite example of creating the llvm IR of a 'while' loop. Very similar to a 'while' loop. It also uses a symbol table to keep track of the 'i' values and array. Creates the IR representation of the below code.
+
+```
+def int_array_length_3 main()
+    array = [3,5,8]
+
+    for (int i = 0; i < 3; i++)
+    {
+        array[i] = array[i] + 1
+    }
+    return array; 
+``` 
 
 #### while_loop_example.py
 Llvmlite example of creating the llvm IR of a 'while' loop. Creates the IR representation of the below code. 
